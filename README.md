@@ -138,7 +138,7 @@ Summary
 ```
 
 5. Open the frontend:
-   Open `index.html` in your preferred web browser. This will allow you to interact with the smart contract and issue certificates.
+   Open `index.html` and `gen.html` in your preferred web browser. This will allow you to interact with the smart contract and issue certificates.
 
 Change the following to desired one when you run `truffle migrate --reset --network development`
 
@@ -151,10 +151,12 @@ web3.eth.defaultAccount = "0x14201e0bAf750fd75570bc225e821fD84903E014"
 ```
 
             const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
-            const contractAddress = "0x14906C19b32e278882140541Ab2c3399B5a1edC4"; // Update with your contract address
+            // Update with your contract address
+            const contractAddress = "0x14906C19b32e278882140541Ab2c3399B5a1edC4";
 
             // Set the default account to one of the Ganache accounts
-            web3.eth.defaultAccount = "0x14201e0bAf750fd75570bc225e821fD84903E014"; // Change to another Ganache account if needed
+            web3.eth.defaultAccount = "0x14201e0bAf750fd75570bc225e821fD84903E014";
+            // Change to another Ganache account if needed
 
 ```
 
