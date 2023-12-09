@@ -26,6 +26,12 @@ npm install
 ```
 
 3. Start Ganache:
+
+   ```
+   truffle compile
+   ganache-cli
+   ```
+
    Ensure Ganache is running and has a local blockchain available.
 
 4. Compile and deploy the smart contract:
