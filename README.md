@@ -142,6 +142,12 @@ Summary
 
 Change the following:
 
+Port number:8545
+
+contractAddress = "0x14906C19b32e278882140541Ab2c3399B5a1edC4"
+
+web3.eth.defaultAccount = "0x14201e0bAf750fd75570bc225e821fD84903E014"
+
 ```
             const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
             const contractAddress = "0x14906C19b32e278882140541Ab2c3399B5a1edC4"; // Update with your contract address
