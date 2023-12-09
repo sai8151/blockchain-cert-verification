@@ -176,7 +176,3 @@ web3.eth.defaultAccount = "0x14201e0bAf750fd75570bc225e821fD84903E014"
 ## Customization
 
 Feel free to customize the smart contract (`contracts/CertificateContract.sol`) and the frontend (`index.html`) based on your specific requirements.
-
-```
-
-```
