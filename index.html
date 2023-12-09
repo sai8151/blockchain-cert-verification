@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Certificate Verification</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester');
+
+        .cursive {
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .sans {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .underline {
+            border-bottom: 1px solid #777;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+
+        .margin-0 {
+            margin: 0;
+        }
+
+        .padding-0 {
+            padding: 0;
+        }
+
+        .pm-empty-space {
+            height: 40px;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Additional styling for other content on top of the video background */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: black;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Input Field Styles */
+        input[type=text] {
+            width: 200px;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:hover {
+            width: 20%;
+        }
+
+        /* Button Styles */
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+        .pm-certificate-container {
+            position: relative;
+            height: 600px;
+            background: url('https://media.istockphoto.com/id/159273543/vector/blank-white-certificate-with-patterned-green-and-blue-border.jpg?s=612x612&w=0&k=20&c=eXreBPraaaj6P3hSW6u1dOd-HUZiSCG48FdDrzpQjiQ=') no-repeat;
+            background-size: contain;
+            background-position: center center;
+            /* Center the background image */
+            padding: 30px;
+            margin: 30px;
+            color: #333;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+
+        .outer-border {
+            position: absolute;
+            left: 50%;
+            margin-left: -397px;
+            top: 50%;
+            margin-top: -297px;
+            border: 2px solid #fff;
+        }
+
+        .inner-border {
+            width: auto;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            margin-left: -365px;
+            top: 50%;
+            margin-top: -265px;
+            border: 0px solid #fff;
+        }
+
+        .pm-certificate-border {
+            position: relative;
+            width: 320px;
+            padding: 0;
+            border: 0px solid #E1E5F0;
+            background-color: rgba(255, 255, 255, 0.178);
+            background-image: none;
+            left: 50%;
+            margin-left: -160px;
+            /* Adjusted margin to center */
+            top: 50%;
+            margin-top: -260px;
+        }
+
+
+        .pm-certificate-block {
+            width: 650px;
+            height: 200px;
+            position: relative;
+            left: 50%;
+            margin-left: -325px;
+            top: 70px;
+            margin-top: 0;
+        }
+
+        .pm-certificate-header {
+            margin-bottom: 10px;
+        }
+
+        .pm-certificate-title {
+            position: relative;
+            top: 40px;
+        }
+
+        .pm-certificate-title h2 {
+            font-size: 34px !important;
+        }
+
+        .pm-certificate-body {
+            padding: 20px;
+        }
+
+        .pm-name-text {
+            font-size: 20px;
+        }
+
+        .pm-earned {
+            margin: 15px 0 20px;
+        }
+
+        .pm-earned-text {
+            font-size: 20px;
+        }
+
+        .pm-credits-text {
+            font-size: 15px;
+        }
+
+        .pm-course-title .pm-earned-text,
+        .pm-course-title .pm-credits-text {
+            font-size: 20px;
+        }
+
+        .pm-certified {
+            font-size: 12px;
+        }
+
+        .pm-certified .underline {
+            margin-bottom: 5px;
+        }
+
+        .pm-certificate-footer {
+            width: 650px;
+            height: 100px;
+            position: relative;
+            left: 50%;
+            margin-left: -325px;
+            bottom: -105px;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop>
+        <source src="1389623.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content">
+        <!-- Your other content goes here -->
+        <!-- <h1>Your Website Content</h1>
+        <p>This is some text on top of the video background.</p>
+     -->
+        <h1>Blockchain Certificate Verification</h1>
+
+        <form>
+            <label for="certificateId">Enter Certificate ID:</label>
+            <input type="text" id="certificateId" name="certificateId">
+            <button type="button" onclick="verifyCertificate()">Verify</button>
+        </form>
+
+        <div id="certificateDetails"></div>
+
+        <script>
+            const networkId = "1337"; // Update with your network ID
+            const contractAddress = "0x14906C19b32e278882140541Ab2c3399B5a1edC4"; // Update with your contract address
+
+            // Replace with your actual contract ABI
+            const contractAbi = [
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "recipientName",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "course",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "issuingOrganization",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "certificateHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "CertificateIssued",
+                    "type": "event"
+                },
+                {
+                    "inputs": [],
+                    "name": "admin",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "constant": true
+                },
+                {
+                    "inputs": [],
+                    "name": "certificateCount",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "constant": true
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "certificates",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "recipientName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "course",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "issuingOrganization",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "certificateHash",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function",
+                    "constant": true
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "recipientName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "course",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "issuingOrganization",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "certificateHash",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "issueCertificate",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ];
+
+            const web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+            // Ensure contract is deployed
+            const certificateContract = new web3.eth.Contract(contractAbi, contractAddress);
+            console.log("Certificate contract instance:", certificateContract);
+
+            async function verifyCertificate() {
+                const certificateId = document.getElementById("certificateId").value;
+                try {
+                    const certificate = await certificateContract.methods.certificates(certificateId).call();
+                    displayCertificateDetails(certificate);
+                    //document.getElementById("certificateDetails").innerText = JSON.stringify(certificate, null, 2);
+                } catch (error) {
+                    console.error("Error verifying certificate:", error.message);
+                }
+            }
+
+            function displayCertificateDetails(certificate) {
+                const certificateDetailsDiv = document.getElementById("certificateDetails");
+                certificateDetailsDiv.innerHTML = "";
+
+                const fields = [
+                    { label: "Recipient Name", value: certificate.recipientName },
+                    { label: "Course", value: certificate.course },
+                    { label: "Issuing Organization", value: certificate.issuingOrganization },
+                    { label: "Date Issued", value: certificate.dateIssued }, // Add the actual property name from your certificate object
+                    // Add more fields as needed
+                ];
+
+                const containerDiv = document.createElement("div");
+                containerDiv.classList.add("container", "pm-certificate-container");
+
+                const outerBorderDiv = document.createElement("div");
+                outerBorderDiv.classList.add("outer-border");
+                containerDiv.appendChild(outerBorderDiv);
+
+                const innerBorderDiv = document.createElement("div");
+                innerBorderDiv.classList.add("inner-border");
+                containerDiv.appendChild(innerBorderDiv);
+
+                const certificateBorderDiv = document.createElement("div");
+                certificateBorderDiv.classList.add("pm-certificate-border", "col-xs-12");
+                containerDiv.appendChild(certificateBorderDiv);
+
+                // Add the rest of the structure using a similar approach
+
+                fields.forEach(field => {
+                    const fieldDiv = document.createElement("div");
+                    fieldDiv.classList.add("pm-certificate-name", "underline", "margin-0", "col-xs-8", "text-center");
+                    fieldDiv.innerHTML = `<span class="pm-name-text bold">${field.label}: ${field.value}</span>`;
+                    certificateBorderDiv.appendChild(fieldDiv);
+                });
+
+                certificateDetailsDiv.appendChild(containerDiv);
+            }
+
+        </script>
+    </div>
+</body>
+
+</html>
