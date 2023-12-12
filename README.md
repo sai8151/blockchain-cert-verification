@@ -21,6 +21,18 @@ truffle migrate
 
 
 ```
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle init
+
+
+$ npm install web3-providers-ws
+
+added 37 packages, and audited 38 packages in 8s
+
+20 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
 zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle compile
 
 
