@@ -6,6 +6,20 @@
 
 This project demonstrates a simple implementation of certificate validation using a blockchain. It utilizes a smart contract to issue and verify certificates on the Ethereum blockchain.
 
+
+copy the 2_deploy_contracts.js and CertificateContract.sol as it is.
+
+now run `truffle compile`
+
+Update Migration Script:
+
+Update your migration script (2_deploy_contracts.js) to deploy the CertificateContract
+
+finally run:
+
+truffle migrate
+
+
 ```
 zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle compile
 
