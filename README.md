@@ -6,6 +6,69 @@
 
 This project demonstrates a simple implementation of certificate validation using a blockchain. It utilizes a smart contract to issue and verify certificates on the Ethereum blockchain.
 
+```
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle compile
+
+
+Compiling your contracts...
+===========================
+✓ Fetching solc version list from solc-bin. Attempt #1
+> Everything is up to date, there is nothing to compile.
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ 
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle compile
+
+Compiling your contracts...
+===========================
+✓ Fetching solc version list from solc-bin. Attempt #1
+> Compiling ./contracts/CertificateContract.sol
+> Artifacts written to /home/zorin/webtech/blockchain/proj1.1/build/contracts
+> Compiled successfully using:
+   - solc: 0.8.23+commit.f704f362.Emscripten.clang
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ truffle migrate
+
+Compiling your contracts...
+===========================
+✓ Fetching solc version list from solc-bin. Attempt #1
+> Everything is up to date, there is nothing to compile.
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      1702401892978
+> Block gas limit: 30000000 (0x1c9c380)
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'CertificateContract'
+   -------------------------------
+   > transaction hash:    0x1a1e9e298750057f0e930520dbc308bf6db16b8deded77ab6e89880e4ca8b356
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xdA848f597F297D130719250e711b5FAC37f368c1
+   > block number:        1
+   > block timestamp:     1702402541
+   > account:             0x0eb8EFeD8c6162e92E89ceb689adAe1086F38844
+   > balance:             999.997359416875
+   > gas used:            782395 (0xbf03b)
+   > gas price:           3.375 gwei
+   > value sent:          0 ETH
+   > total cost:          0.002640583125 ETH
+
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:      0.002640583125 ETH
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.002640583125 ETH
+
+
+zorin@zorin-HP-Laptop-14-dq2535tu:~/webtech/blockchain/proj1.1$ 
+```
+
 ## Prerequisites
 
 Ensure that you have the following software installed on your machine:
